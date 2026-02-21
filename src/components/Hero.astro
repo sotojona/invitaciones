@@ -1,0 +1,65 @@
+<section class="hero">
+  <div class="overlay">
+    <h1>Jonathan & María</h1>
+    <p class="date">17 de Octubre de 2026</p>
+  </div>
+
+  <!-- Decoraciones -->
+  <img src="/images/ramita2.png" class="leaf top-left" />
+  <img src="/images/mariposas.png" class="leaf bottom-left" />
+  <img src="/images/flor.png" class="leaf bottom-right" />
+</section>
+
+<style>
+.hero {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  background-color: #ffffff; /* fondo blanco puro */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #556B2F; /* letras verde oliva */
+  text-align: center;
+  overflow: hidden;
+}
+
+.overlay {
+  z-index: 1;
+}
+
+.overlay h1 {
+  font-size: 4rem;
+  margin: 0;
+  letter-spacing: 3px;
+}
+
+.overlay .date {
+  margin-top: 20px;
+  font-size: 1.5rem;
+  font-style: italic;
+}
+
+/* Hojas decorativas */
+.leaf {
+  position: absolute;
+  width: 150px;
+  opacity: 0.8;
+  z-index: 0;
+}
+
+.top-left { top: 20px; left: 20px; }
+.top-right { top: 20px; right: 20px; transform: scaleX(-1); }
+.bottom-left { bottom: 20px; left: 20px; transform: scaleY(-1); }
+.bottom-right { bottom: 20px; right: 20px; transform: scale(-1); }
+
+/* Animación suave */
+.hero {
+  animation: fadeInHero 1.2s ease forwards;
+}
+
+@keyframes fadeInHero {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>

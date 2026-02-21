@@ -1,0 +1,77 @@
+<section class="hero">
+  <div class="overlay">
+    <h1>Jonathan & María</h1>
+    <p class="date">17 de Octubre de 2026</p>
+  </div>
+
+  <img src="/images/leaf-top-left.png" class="leaf top-left" />
+  <img src="/images/leaf-bottom-right.png" class="leaf bottom-right" />
+</section>
+
+<section class="details">
+  <h2>Nuestra Celebración</h2>
+  <p>Nos encantaría compartir este día tan especial contigo.</p>
+  <p>Finca Los Olivos · 18:00h</p>
+</section>
+
+<style>
+.hero {
+  height: 100vh;
+  position: relative;
+  background-image:
+    linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6)),
+    url('/images/hero.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+
+.overlay h1 {
+  font-size: 4rem;
+  letter-spacing: 3px;
+  margin: 0;
+}
+
+.date {
+  margin-top: 20px;
+  font-size: 1.5rem;
+  font-style: italic;
+}
+
+/* Decoraciones */
+.leaf {
+  position: absolute;
+  width: 150px;
+  opacity: 0.8;
+}
+
+.top-left {
+  top: 20px;
+  left: 20px;
+}
+
+.bottom-right {
+  bottom: 20px;
+  right: 20px;
+}
+
+/* Segunda sección */
+.details {
+  padding: 120px 20px;
+  background-color: #f5f1e8;
+}
+
+.details h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+}
+
+.details p {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+</style>
