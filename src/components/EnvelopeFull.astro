@@ -24,17 +24,15 @@
     <div class="paper-note">
       <p class="title">¡NOS CASAMOS!</p>
       <p>Y queremos que nos acompañes</p>
-      <p class="names"><em>Jonathan Soto y María Lince</em></p>
+      <div class="names">
+        <span class="name"> Jonathan Soto</span>
+        <span class = "and">y</span>
+        <span class = "name"> María Lince</span>
+      </div>
       <p class="date">17 de octubre de 2026</p>
     </div>
   </div>
 
-  <!-- Overlay centrado opcional -->
-  <div class="overlay">
-    <h1>¡Jonathan & María!</h1>
-    <p>21 de junio de 2026</p>
-  </div>
-</section>
 
 <style>
 /* ================= SOBRE ================= */
@@ -158,10 +156,10 @@
 /* Recuadro papel antiguo */
 .paper-note {
   position: absolute;
-  top: 15%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 300px;
+  top: 30%;
+  transform: translateY(-50%) translateX(1200px) scale(0.95);
+  width: 400px;
+  min-height: 400px;
   padding: 25px 30px;
   background-image: url('/images/papel_recuadro.jpg');
   background-size: cover;
@@ -177,33 +175,35 @@
 }
 
 .paper-note .title {
-  font-weight: bold;
-  font-size: 1.6rem;
+  font-weight: Impact;
+  font-size: 3rem;
   margin-bottom: 12px;
 }
 
 .paper-note .names {
   font-style: italic;
-  font-size: 1.2rem;
+  font-size: 2.9rem;
   margin: 8px 0;
+}
+.paper-note .names .name{
+  display: block;
+  font-size: 2.5rem;
+  font-style:italic;
+  letter-spacing: 1px;
+}
+.paper-note .names .and{
+  display: block;
+  margin: 8px 0 ;
+  font-size:1.5rem;
+  font-style:italic;
+  opacity: 0.8;
 }
 
 .paper-note .date {
-  font-size: 1.1rem;
-  margin-top: 8px;
+  font-size: 2rem;
+  margin-top: 5px;
 }
 
-/* Overlay */
-.overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  z-index: 2;
-  color: #556B2F;
-  text-align: center;
-  text-shadow: 0 0 8px rgba(255,255,255,0.6);
-}
 
 /* Responsive */
 @media (max-width: 600px) {
