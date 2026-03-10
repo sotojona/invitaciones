@@ -1,252 +1,870 @@
 ---
-// Este componente combina Envelope + FullScreenImage
+// Envelope interactivo con animacion 3D que revela la invitacion completa
 ---
-<div class="container" id="container">
-  <!-- Sobre -->
-  <div class="envelope" id="envelope">
-    <div class="flap"></div>
-    <div class="body"></div>
-  </div>
 
-  <!-- Invitación dentro del sobre (oculta hasta abrir) -->
-  <div class="invitation">
-    <p>¡Nos casamos!</p>
-    <p>17 de octubre de 2026</p>
+<!-- Pantalla del sobre -->
+<div class="envelope-screen" id="envelope-screen">
+  <div class="envelope-container">
+    <!-- Decoracion botanica -->
+    <img src="/images/ramita.png" alt="" class="decor-leaf left" />
+    <img src="/images/ramita2.png" alt="" class="decor-leaf right" />
+    
+    <!-- Sobre 3D -->
+    <div class="envelope-wrapper">
+      <div class="envelope" id="envelope">
+        <!-- Parte trasera del sobre -->
+        <div class="envelope-back"></div>
+        
+        <!-- Carta que sale del sobre -->
+        <div class="letter" id="letter">
+          <div class="letter-content">
+            <p class="letter-subtitle">Estas invitado a nuestra boda</p>
+            <p class="letter-names">Jonathan & Maria</p>
+            <p class="letter-date">17 de Octubre de 2026</p>
+          </div>
+        </div>
+        
+        <!-- Parte frontal del sobre -->
+        <div class="envelope-front"></div>
+        
+        <!-- Solapa del sobre -->
+        <div class="envelope-flap" id="envelope-flap">
+          <div class="wax-seal">
+            <span>J&M</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Indicador de click -->
+    <p class="tap-hint" id="tap-hint">Toca el sobre para abrirlo</p>
   </div>
 </div>
 
-<!-- Fullscreen image con recuadro papel antiguo -->
-<section class="full-image">
-  <div class="image-container">
-    <img src="/images/portada_invitacion.jpeg" alt="Nosotros" class="full-image-img" />
-
-    <!-- Recuadro papel antiguo -->
-    <div class="paper-note">
-      <p class="title">¡NOS CASAMOS!</p>
-      <p>Y queremos que nos acompañes</p>
-      <div class="names">
-        <span class="name"> Jonathan Soto</span>
-        <span class = "and">y</span>
-        <span class = "name"> María Lince</span>
-      </div>
-      <p class="date">17 de octubre de 2026</p>
+<!-- Contenido de la invitacion (oculto inicialmente) -->
+<main class="invitation-content" id="invitation-content">
+  
+  <!-- Hero con imagen de la pareja -->
+  <section class="hero-section">
+    <div class="hero-image-container">
+      <img src="/images/portada_invitacion.jpeg" alt="Jonathan y Maria" class="hero-image" />
+      <div class="hero-overlay"></div>
     </div>
-  </div>
+    <div class="hero-text">
+      <p class="hero-subtitle">Nos casamos</p>
+      <h1 class="hero-names">Jonathan Soto <span class="ampersand">&</span> Maria Lince</h1>
+      <div class="hero-divider">
+        <img src="/images/oliva.png" alt="" class="divider-leaf" />
+      </div>
+      <p class="hero-date">17 de Octubre de 2026</p>
+    </div>
+  </section>
 
+  <!-- Countdown -->
+  <section class="countdown-section">
+    <h2 class="section-title">Cuenta Regresiva</h2>
+    <div class="countdown" id="countdown">
+      <div class="countdown-item">
+        <span class="countdown-number" id="days">000</span>
+        <span class="countdown-label">Dias</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-number" id="hours">00</span>
+        <span class="countdown-label">Horas</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-number" id="minutes">00</span>
+        <span class="countdown-label">Minutos</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-number" id="seconds">00</span>
+        <span class="countdown-label">Segundos</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detalles del evento -->
+  <section class="details-section">
+    <h2 class="section-title">Detalles del Evento</h2>
+    <div class="details-grid">
+      <div class="detail-card">
+        <div class="detail-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        </div>
+        <h3>Fecha</h3>
+        <p>Sabado, 17 de Octubre de 2026</p>
+      </div>
+      <div class="detail-card">
+        <div class="detail-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        </div>
+        <h3>Hora</h3>
+        <p>16:30 horas</p>
+      </div>
+      <div class="detail-card">
+        <div class="detail-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        </div>
+        <h3>Lugar</h3>
+        <p>Hotel Eurostars Madrid Foro</p>
+        <p class="detail-address">Ronda de Europa, 1<br>28760 Tres Cantos, Madrid</p>
+      </div>
+      <div class="detail-card">
+        <div class="detail-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+        </div>
+        <h3>Parking</h3>
+        <p>Parking gratuito disponible para todos los invitados</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ubicacion con mapa -->
+  <section class="location-section">
+    <h2 class="section-title">Como Llegar</h2>
+    <div class="map-container">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3030.7241427849413!2d-3.7069444!3d40.6066667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd422c09a2c74b35%3A0x3c7d2c2b2c2b2c2b!2sHotel%20Eurostars%20Madrid%20Foro!5e0!3m2!1ses!2ses!4v1699999999999!5m2!1ses!2ses"
+        width="100%" 
+        height="400" 
+        style="border:0; border-radius: 12px;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+    <a href="https://maps.google.com/?q=Hotel+Eurostars+Madrid+Foro+Tres+Cantos" target="_blank" rel="noopener" class="directions-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg>
+      Abrir en Google Maps
+    </a>
+  </section>
+
+  <!-- RSVP -->
+  <section class="rsvp-section">
+    <h2 class="section-title">Confirma tu Asistencia</h2>
+    <p class="rsvp-subtitle">Por favor, confirmanos antes del 1 de Septiembre de 2026</p>
+    <form class="rsvp-form" id="rsvp-form">
+      <div class="form-group">
+        <label for="name">Nombre completo</label>
+        <input type="text" id="name" name="name" required placeholder="Tu nombre" />
+      </div>
+      <div class="form-group">
+        <label for="guests">Numero de invitados</label>
+        <select id="guests" name="guests" required>
+          <option value="">Selecciona</option>
+          <option value="1">1 persona</option>
+          <option value="2">2 personas</option>
+          <option value="3">3 personas</option>
+          <option value="4">4 personas</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="attendance">Asistiras?</label>
+        <div class="radio-group">
+          <label class="radio-label">
+            <input type="radio" name="attendance" value="yes" required />
+            <span>Si, alli estare</span>
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="attendance" value="no" required />
+            <span>No podre asistir</span>
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="dietary">Restricciones alimenticias</label>
+        <textarea id="dietary" name="dietary" rows="3" placeholder="Alergias, vegetariano, etc."></textarea>
+      </div>
+      <button type="submit" class="submit-btn">Enviar Confirmacion</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <img src="/images/oliva.png" alt="" class="footer-leaf" />
+    <p class="footer-names">Jonathan & Maria</p>
+    <p class="footer-date">17.10.2026</p>
+  </footer>
+</main>
 
 <style>
-/* ================= SOBRE ================= */
-.container {
-  height: 100vh;
+/* Variables */
+:root {
+  --olive: #6B7B5F;
+  --olive-dark: #4A5A42;
+  --olive-light: #8A9A7E;
+  --cream: #FAF8F5;
+  --cream-dark: #F0EDE6;
+  --brown: #5A4A3A;
+  --brown-light: #7A6A5A;
+  --gold: #C9A962;
+}
+
+/* Reset y base */
+* {
+  box-sizing: border-box;
+}
+
+/* ============ ENVELOPE SCREEN ============ */
+.envelope-screen {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, var(--cream) 0%, var(--cream-dark) 100%);
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f4efe6;
-  transition: opacity 1s ease;
+  z-index: 1000;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.envelope-screen.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.envelope-container {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* Decoracion botanica */
+.decor-leaf {
+  position: absolute;
+  width: 120px;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.decor-leaf.left {
+  top: -80px;
+  left: -100px;
+  transform: rotate(-30deg);
+}
+
+.decor-leaf.right {
+  bottom: -60px;
+  right: -100px;
+  transform: rotate(150deg) scaleX(-1);
+}
+
+/* Sobre 3D */
+.envelope-wrapper {
+  perspective: 1000px;
 }
 
 .envelope {
   position: relative;
   width: 320px;
-  height: 210px;
+  height: 220px;
   cursor: pointer;
-  perspective: 1200px;
-  z-index: 2;
+  transform-style: preserve-3d;
 }
 
-/* Cuerpo del sobre */
-.body {
-  width: 100%;
-  height: 100%;
-  background-image: url('/images/papel_recuadro.jpg'); /* textura de papel antiguo */
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  border-radius: 10px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.25); /* sombra suave */
-  position: relative;
-  z-index: 1;
-}
-
-
-/* Flap del sobre */
-.flap {
+.envelope-back {
   position: absolute;
-  top: 0;
-  width: 100%;
-  height: 110px;
-  background-image: url('/images/papel_recuadro.jpg'); /* tapa con textura */
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  transform-origin: top;
-  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
-  box-shadow: inset 0 -4px 6px rgba(0,0,0,0.1);
-  z-index: 2;
-}
-
-.envelope.open .flap {
-  transform: rotateX(180deg);
-}
-
-/* Invitación dentro del sobre */
-.invitation {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.8);
-  width: 280px;
-  padding: 20px;
-  background-color: #fff8f0;
+  inset: 0;
+  background: linear-gradient(145deg, #E8DFD0 0%, #D8CCBA 100%);
   border-radius: 8px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-  opacity: 0;
-  transition: opacity 1s ease, transform 0.8s ease;
-  text-align: center;
-  font-family: 'Georgia', serif;
-  z-index: 1;
+  box-shadow: 
+    0 15px 35px rgba(0,0,0,0.15),
+    0 5px 15px rgba(0,0,0,0.08);
 }
 
-.invitation.visible {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
+.envelope-front {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
+  background: linear-gradient(180deg, #F5EDE0 0%, #E8DFD0 100%);
+  border-radius: 0 0 8px 8px;
+  clip-path: polygon(0 40%, 50% 0, 100% 40%, 100% 100%, 0 100%);
+  z-index: 3;
 }
 
-.invitation p:first-child {
-  font-weight: bold;
-  font-size: 1.3rem;
-  margin-bottom: 8px;
-}
-
-.invitation p:nth-child(2) {
-  font-size: 1.1rem;
-  color: #5a4632;
-}
-
-/* ================= FULLSCREEN IMAGE ================= */
-.full-image {
-  position: relative;
-  width: 100%;
+/* Carta dentro del sobre */
+.letter {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 280px;
+  height: 180px;
+  background: linear-gradient(135deg, #FFFEF9 0%, #FFF9F0 100%);
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 2;
+  transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 0;
-  transform: translateY(50px);
-  transition: opacity 1.2s ease, transform 1.2s ease;
 }
 
-.full-image.visible {
-  opacity: 1;
-  transform: translateY(0);
+.envelope.open .letter {
+  transform: translateX(-50%) translateY(-120px);
 }
 
-.image-container {
-  position: relative;
-  width: 100%;
-}
-
-.full-image-img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* Recuadro papel antiguo */
-.paper-note {
-  position: absolute;
-  top: 30%;
-  transform: translateY(-50%) translateX(1200px) scale(0.95);
-  width: 400px;
-  min-height: 400px;
-  padding: 25px 30px;
-  background-image: url('/images/papel_recuadro.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  color: #5a4632;
-  font-family: 'Georgia', serif;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-  border: 1px solid rgba(0,0,0,0.2);
-  line-height: 1.5;
-  z-index: 10;
+.letter-content {
   text-align: center;
+  padding: 1.5rem;
 }
 
-.paper-note .title {
-  font-weight: Impact;
-  font-size: 3rem;
-  margin-bottom: 12px;
+.letter-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.9rem;
+  color: var(--brown-light);
+  margin: 0 0 0.5rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
-.paper-note .names {
-  font-style: italic;
-  font-size: 2.9rem;
-  margin: 8px 0;
+.letter-names {
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.8rem;
+  color: var(--olive-dark);
+  margin: 0 0 0.5rem;
 }
-.paper-note .names .name{
-  display: block;
-  font-size: 2.5rem;
-  font-style:italic;
+
+.letter-date {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  color: var(--brown);
+  margin: 0;
+}
+
+/* Solapa del sobre */
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 55%;
+  background: linear-gradient(180deg, #E8DFD0 0%, #DDD2C2 100%);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top center;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.envelope.open .envelope-flap {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
+
+/* Sello de cera */
+.wax-seal {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, var(--olive) 0%, var(--olive-dark) 100%);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 
+    0 4px 8px rgba(0,0,0,0.2),
+    inset 0 2px 4px rgba(255,255,255,0.2);
+  transform: translateY(15px);
+}
+
+.wax-seal span {
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.2rem;
+  color: var(--cream);
+}
+
+/* Indicador de tap */
+.tap-hint {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  color: var(--brown-light);
   letter-spacing: 1px;
+  animation: pulse 2s ease-in-out infinite;
 }
-.paper-note .names .and{
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* ============ INVITATION CONTENT ============ */
+.invitation-content {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.8s ease 0.3s, visibility 0.8s ease 0.3s;
+  background: var(--cream);
+}
+
+.invitation-content.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Hero Section */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero-image-container {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.2) 0%,
+    rgba(0,0,0,0.4) 50%,
+    rgba(0,0,0,0.6) 100%
+  );
+}
+
+.hero-text {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 2rem;
+  color: white;
+}
+
+.hero-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin: 0 0 1rem;
+  opacity: 0.9;
+}
+
+.hero-names {
+  font-family: 'Great Vibes', cursive;
+  font-size: 3.5rem;
+  margin: 0;
+  line-height: 1.2;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+}
+
+.ampersand {
   display: block;
-  margin: 8px 0 ;
-  font-size:1.5rem;
-  font-style:italic;
+  font-size: 2rem;
+  margin: 0.5rem 0;
   opacity: 0.8;
 }
 
-.paper-note .date {
-  font-size: 2rem;
-  margin-top: 5px;
+.hero-divider {
+  margin: 1.5rem 0;
 }
 
+.divider-leaf {
+  width: 80px;
+  opacity: 0.8;
+  filter: brightness(2);
+}
+
+.hero-date {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  letter-spacing: 3px;
+  margin: 0;
+}
+
+/* Section Title */
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: var(--olive-dark);
+  text-align: center;
+  margin: 0 0 2rem;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: var(--olive);
+  margin: 1rem auto 0;
+}
+
+/* Countdown Section */
+.countdown-section {
+  padding: 5rem 1.5rem;
+  background: var(--cream-dark);
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  min-width: 100px;
+}
+
+.countdown-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  color: var(--olive-dark);
+  font-weight: 600;
+}
+
+.countdown-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.9rem;
+  color: var(--brown-light);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 0.5rem;
+}
+
+/* Details Section */
+.details-section {
+  padding: 5rem 1.5rem;
+  background: var(--cream);
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.detail-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.detail-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.detail-icon {
+  width: 60px;
+  height: 60px;
+  background: var(--cream-dark);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 1rem;
+  color: var(--olive);
+}
+
+.detail-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  color: var(--olive-dark);
+  margin: 0 0 0.5rem;
+}
+
+.detail-card p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: var(--brown);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.detail-address {
+  font-size: 0.95rem !important;
+  color: var(--brown-light) !important;
+  margin-top: 0.5rem !important;
+}
+
+/* Location Section */
+.location-section {
+  padding: 5rem 1.5rem;
+  background: var(--cream-dark);
+}
+
+.map-container {
+  max-width: 900px;
+  margin: 0 auto 1.5rem;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.directions-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--olive);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.directions-btn:hover {
+  background: var(--olive-dark);
+  transform: translateY(-2px);
+}
+
+/* RSVP Section */
+.rsvp-section {
+  padding: 5rem 1.5rem;
+  background: var(--cream);
+}
+
+.rsvp-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: var(--brown-light);
+  text-align: center;
+  margin: -1rem 0 2rem;
+}
+
+.rsvp-form {
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: var(--olive-dark);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: white;
+  color: var(--brown);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--olive);
+  box-shadow: 0 0 0 3px rgba(107, 123, 95, 0.1);
+}
+
+.radio-group {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: var(--brown);
+}
+
+.radio-label input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--olive);
+}
+
+.submit-btn {
+  background: var(--olive);
+  color: white;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 50px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+  margin-top: 1rem;
+}
+
+.submit-btn:hover {
+  background: var(--olive-dark);
+  transform: translateY(-2px);
+}
+
+/* Footer */
+.footer {
+  padding: 4rem 1.5rem;
+  background: var(--olive-dark);
+  text-align: center;
+}
+
+.footer-leaf {
+  width: 60px;
+  opacity: 0.5;
+  filter: brightness(2);
+  margin-bottom: 1rem;
+}
+
+.footer-names {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.5rem;
+  color: var(--cream);
+  margin: 0 0 0.5rem;
+}
+
+.footer-date {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: var(--cream);
+  opacity: 0.7;
+  letter-spacing: 3px;
+  margin: 0;
+}
 
 /* Responsive */
 @media (max-width: 600px) {
-  .paper-note {
-    width: 220px;
-    padding: 15px 18px;
+  .hero-names {
+    font-size: 2.5rem;
   }
-  .paper-note .title {
-    font-size: 1.3rem;
+  
+  .ampersand {
+    font-size: 1.5rem;
   }
-  .paper-note .names {
-    font-size: 1rem;
+  
+  .countdown-item {
+    padding: 1rem 1.5rem;
+    min-width: 80px;
   }
-  .paper-note .date {
-    font-size: 0.95rem;
+  
+  .countdown-number {
+    font-size: 2rem;
+  }
+  
+  .decor-leaf {
+    width: 80px;
+  }
+  
+  .decor-leaf.left {
+    top: -50px;
+    left: -40px;
+  }
+  
+  .decor-leaf.right {
+    bottom: -40px;
+    right: -40px;
+  }
+  
+  .envelope {
+    width: 280px;
+    height: 190px;
+  }
+  
+  .letter {
+    width: 240px;
+    height: 160px;
+  }
+  
+  .letter-names {
+    font-size: 1.5rem;
   }
 }
 </style>
 
 <script type="module">
-const envelope = document.getElementById("envelope");
-const container = document.getElementById("container");
-const invitation = document.querySelector(".invitation");
-const fullScreen = document.querySelector(".full-image");
-
-envelope.addEventListener("click", () => {
-  // 1️⃣ Abrir la tapa
-  envelope.classList.add("open");
-
-  // 2️⃣ Esperar animación flap
-  setTimeout(() => {
-    // Difuminar sobre
-    container.style.opacity = "0";
-
-    // Mostrar invitación dentro del sobre (opcional)
-    if (invitation) {
-      invitation.classList.add("visible");
+  // Envelope interaction
+  const envelope = document.getElementById('envelope');
+  const envelopeScreen = document.getElementById('envelope-screen');
+  const invitationContent = document.getElementById('invitation-content');
+  const tapHint = document.getElementById('tap-hint');
+  
+  let isOpened = false;
+  
+  envelope.addEventListener('click', () => {
+    if (isOpened) return;
+    isOpened = true;
+    
+    // Open envelope flap
+    envelope.classList.add('open');
+    tapHint.style.opacity = '0';
+    
+    // After animation, hide envelope and show content
+    setTimeout(() => {
+      envelopeScreen.classList.add('hidden');
+      invitationContent.classList.add('visible');
+    }, 1200);
+  });
+  
+  // Countdown timer
+  function updateCountdown() {
+    const weddingDate = new Date('2026-10-17T16:30:00').getTime();
+    const now = new Date().getTime();
+    const difference = weddingDate - now;
+    
+    if (difference > 0) {
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+      
+      document.getElementById('days').textContent = String(days).padStart(3, '0');
+      document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+      document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
     }
-
-    // Mostrar Fullscreen automáticamente
-    if (fullScreen) {
-      fullScreen.classList.add("visible");
-    }
-  }, 800); // coincide con duración de flap
-});
+  }
+  
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+  
+  // RSVP form submission
+  const rsvpForm = document.getElementById('rsvp-form');
+  rsvpForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    alert('Gracias por confirmar tu asistencia. Nos vemos pronto!');
+    rsvpForm.reset();
+  });
 </script>
